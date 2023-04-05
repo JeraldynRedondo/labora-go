@@ -1,10 +1,2 @@
-sección-1\hola-mundo\
-hola-mundo.exe
-sección-1\variables\
-equipos.exe
-restaurantes.exe
-sistema-solar.exe
-sección-1\ejercicios-dia2\punteros
-punteros.exe
-sección-1\ejercicios-dia2\calculadora
-calculadora.exe
+#Ignorar archivos ejecutables .exe 
+*.exe
