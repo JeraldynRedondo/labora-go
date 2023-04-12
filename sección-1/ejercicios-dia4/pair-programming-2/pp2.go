@@ -148,28 +148,31 @@ func main() {
 	var accion, criterio int
 	i := 0
 
-	ingresarPersona(nombre, edad, altura, peso, &personas)
-	ingresarPersona(nombre, edad, altura, peso, &personas)
+	// ingresarPersona(nombre, edad, altura, peso, &personas)
+	// ingresarPersona(nombre, edad, altura, peso, &personas)
 	// ingresarPersona(nombre, edad, altura, peso, &personas)
 	// ingresarPersona(nombre, edad, altura, peso, &personas)
 	// ingresarPersona(nombre, edad, altura, peso, &personas)
 
-	fmt.Println("Las personas creadas son: ", personas)
+	// fmt.Println("Las personas creadas son: ", personas)
 
 	for i != 1 {
 
-		fmt.Printf("Ingrese el proceso que desea hacer: \n1. Ordenar \n2. Buscar \n3. Cerrar\n")
+		fmt.Printf("Ingrese el proceso que desea hacer: \n1. Agregar persona\n2. Ordenar \n3. Buscar \n4. Calcular imc \n5. Cerrar\n")
 
 		fmt.Scan(&accion)
 
 		switch accion {
-		case 1: // Ordenar personas
+		case 1:
+			ingresarPersona(nombre, edad, altura, peso, &personas)
+			fmt.Printf("\nGrupo de personas: \n%v\n", personas)
+		case 2: // Ordenar personas
 			fmt.Println("Criterios desea ordenar a las personas: \n1. Nombre \n2. Edad \n3. Altura \n4. Peso")
 			fmt.Println("Escriba el número de criterio: ")
 			fmt.Scan(&criterio)
 			fmt.Printf("\nPersonas ordenadas: \n%v\n", ordenarPersonas(personas, criterio))
 
-		case 2: // Buscar personas
+		case 3: // Buscar personas
 			fmt.Println("¿Mediante cúal criterio desea buscar a las personas? \n1. Nombre \n2. Edad \n3. Altura \n4. Peso")
 			fmt.Scan(&criterio)
 			fmt.Println("Ingrese el atributo a buscar: ")
@@ -191,14 +194,21 @@ func main() {
 				fmt.Scan(&valor)
 				buscarPersona(personas, criterio, valor)
 			}
-		case 3:
+		case 4:
+			var personaIMC int
+			fmt.Printf("Ingrese el indice de la persona a la que le desea calcular el IMC \n%v\n", personas)
+			fmt.Scan(&personaIMC)
+			if personaIMC > len(personas) {
+				fmt.Println("Indice inválido,intentelo de nuevo")
+			} else {
+				calcularIMC(personas[personaIMC])
+			}
+		case 5:
 			i = 1
 		default:
 			fmt.Println("Opción inválida")
 		}
 	}
-
-	calcularIMC(personas[1])
 
 	// fmt.Scan(&nombre)
 	// fmt.Scan(&edad)
