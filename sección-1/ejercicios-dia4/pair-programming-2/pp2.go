@@ -47,63 +47,40 @@ func ordenarPersonas(personas []Persona, criterio int) []Persona {
 }
 
 func buscarPersona(personas []Persona, criterio int, valor any) {
-	porNombre := func(personas []Persona, valor any) {
-		var persona1 Persona
-		for i := 0; i < len(personas); i++ {
-			if personas[i].altura == valor {
-				persona1 = personas[i]
-				fmt.Printf("Se encontro a: %v\n", persona1)
-			} else {
-				fmt.Print("El atributo no pertenece a ninguna persona\n")
-			}
-		}
-	}
-	porPeso := func(personas []Persona, valor any) {
-		var persona1 Persona
-		for i := 0; i < len(personas); i++ {
-			if personas[i].altura == valor {
-				persona1 = personas[i]
-				fmt.Printf("Se encontro a: %v\n", persona1)
-			} else {
-				fmt.Print("El atributo no pertenece a ninguna persona\n")
-			}
-		}
-	}
-	porEdad := func(personas []Persona, valor any) {
-		var persona1 Persona
-		for i := 0; i < len(personas); i++ {
-			if personas[i].altura == valor {
-				persona1 = personas[i]
-				fmt.Printf("Se encontro a: %v\n", persona1)
-			} else {
-				fmt.Print("El atributo no pertenece a ninguna persona\n")
-			}
-		}
-	}
-	porAltura := func(personas []Persona, valor any) {
-		var persona1 Persona
-		for i := 0; i < len(personas); i++ {
-			if personas[i].altura == valor {
-				persona1 = personas[i]
-				fmt.Printf("Se encontro a: %v\n", persona1)
-			} else {
-				fmt.Print("El atributo no pertenece a ninguna persona\n")
-			}
-		}
-	}
+	var comparar func(p Persona) bool
 	switch criterio {
 	case 1:
-		porNombre(personas, valor)
+		comparar = func(p Persona) bool {
+			return p.nombre == valor.(string)
+		}
 	case 2:
-		porEdad(personas, valor)
+		comparar = func(p Persona) bool {
+			return p.edad == valor.(int)
+		}
 	case 3:
-		porAltura(personas, valor)
+		comparar = func(p Persona) bool {
+			return p.altura == valor.(float64)
+		}
 	case 4:
-		porPeso(personas, valor)
+		comparar = func(p Persona) bool {
+			return p.peso == valor.(float64)
+		}
+	default:
+		fmt.Println("Criterio de búsqueda no válido.")
+		return
 	}
+	var persona1 Persona
+	for i := 0; i < len(personas); i++ {
+		if comparar(personas[i]) {
+			persona1 = personas[i]
+			fmt.Printf("Se encontró a: %v\n", persona1)
+			return
+		}
+	}
+	fmt.Print("El atributo no pertenece a ninguna persona\n")
 }
 
-func calcularIMC(persona Persona) string {
+func calcularIMC(persona Persona) {
 	IMC := persona.peso / (persona.altura * persona.altura)
 	var categoria string
 
@@ -117,7 +94,7 @@ func calcularIMC(persona Persona) string {
 		categoria = "Obesidad"
 	}
 
-	return fmt.Sprintf("La persona %s, de %d años de edad, tiene peso de %.2fkg y altura %.2fm. Su IMC es de %.2f, categorizado en %s", persona.nombre, persona.edad, persona.peso, persona.altura, IMC, categoria)
+	fmt.Printf("La persona %s, de %d años de edad, tiene peso de %.2fkg y altura %.2fm. Su IMC es de %.2f, categorizado en %s\n", persona.nombre, persona.edad, persona.peso, persona.altura, IMC, categoria)
 }
 
 func ingresarPersona(nombre string, edad int, altura float64, peso float64, personas *[]Persona) *[]Persona {
@@ -147,18 +124,9 @@ func main() {
 	var personas []Persona
 	var accion, criterio int
 	i := 0
-
-	// ingresarPersona(nombre, edad, altura, peso, &personas)
-	// ingresarPersona(nombre, edad, altura, peso, &personas)
-	// ingresarPersona(nombre, edad, altura, peso, &personas)
-	// ingresarPersona(nombre, edad, altura, peso, &personas)
-	// ingresarPersona(nombre, edad, altura, peso, &personas)
-
-	// fmt.Println("Las personas creadas son: ", personas)
-
 	for i != 1 {
 
-		fmt.Printf("Ingrese el proceso que desea hacer: \n1. Agregar persona\n2. Ordenar \n3. Buscar \n4. Calcular imc \n5. Cerrar\n")
+		fmt.Printf("Ingrese el proceso que desea hacer: \n1. Agregar persona\n2. Ordenar personas \n3. Buscar persona \n4. Calcular imc \n5. Cerrar\n")
 
 		fmt.Scan(&accion)
 
@@ -209,43 +177,4 @@ func main() {
 			fmt.Println("Opción inválida")
 		}
 	}
-
-	// fmt.Scan(&nombre)
-	// fmt.Scan(&edad)
-	// fmt.Scan(&altura)
-	// fmt.Scan(&peso)
-
-	// persona := crearPersona(&nombre, &edad, &altura, &peso)
-	// personas = append(personas, *persona)
-
-	// persona2 := Persona{
-	// 	nombre: "Pepe",
-	// 	edad: 37,
-	// 	altura: 1.75,
-	// 	peso: 80,
-	// }
-	// persona3 := Persona{
-	// 	nombre: "Alicia",
-	// 	edad: 20,
-	// 	altura: 1.75,
-	// 	peso: 65,
-	// }
-	// persona4 := Persona{
-	// 	nombre: "Juan",
-	// 	edad: 40,
-	// 	altura: 1.85,
-	// 	peso: 90,
-	// }
-	// persona5 := Persona{
-	// 	nombre: "Lucía",
-	// 	edad: 27,
-	// 	altura: 1.63,
-	// 	peso: 60,
-	// }
-
-	// personas := [] Persona{persona1, persona2, persona3, persona4, persona5}
-
-	// fmt.Println(ordenarPersonas(personas, 2))
-	// fmt.Println(buscarPersona(personas, 1, "Juan carlos"))
-	// fmt.Println(calcularIMC(persona1))
 }
