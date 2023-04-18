@@ -57,6 +57,7 @@ func main() {
 	//var num int
 	//fmt.Println("¡Bienvenido! \nPor favor,ingresa el número= ")
 	//fmt.Scanln(&num)
+	//CalcularNumeros(num)
 
 	CalcularNumeros(80)
 	CalcularNumeros(120)

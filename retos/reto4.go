@@ -1,6 +1,8 @@
 /*
 Una cadena de ADN se representa como una secuencia circular de bases (adenina, timina, citosina y guanina) que es única
- para cada ser vivo, por ejemplo:
+
+	para cada ser vivo, por ejemplo:
+
 A
 T
 F
@@ -22,3 +24,61 @@ Pregunta existencial: ¿la cantidad de combinaciones de ADN debe ser finita? ¿C
 haber? ¿Puede ocurrir algún día que se empiezan a repetir??Una cadena de ADN se representa como una secuencia circular
 de bases (adenina, timina, citosina y guanina) que es única para cada ser vivo, por ejemplo:
 */
+package main
+
+import "fmt"
+
+func CompararADN(ADN1, ADN2 string) bool {
+	if len(ADN1) != len(ADN2) {
+		return false
+	}
+
+	for i := 0; i < len(ADN1); i++ {
+		for j := 0; j < len(ADN1); j++ {
+			if ADN1[i] == ADN2[j] {
+				for k := 1; k < len(ADN1); k++ {
+					if ADN1[(i+k)%len(ADN1)] != ADN2[(j+k)%len(ADN2)] {
+						break
+					} else if k == len(ADN1)-1 {
+						return true
+					}
+				}
+			}
+		}
+	}
+
+	return false
+}
+
+func main() {
+	var ADN1, ADN2 string
+
+	//fmt.Println("¡Bienvenido! \nPor favor,ingresa el primer ADN a comparar")
+	//fmt.Scanln(&ADN1)
+	//fmt.Println("¡Bienvenido! \nPor favor,ingresa el segundo ADN a comparar")
+	//fmt.Scanln(&ADN2)
+
+	//SI
+	// ADN1 = "ATGCGTAT"
+	// ADN2 = "ATATGCGT"
+	//NO
+	// ADN1 = "TATGCGJA"
+	// ADN2 = "ATATGCGQ"
+	//NO
+	// ADN1 = "ATGCGTAT"
+	// ADN2 = "CGTATAXG"
+	//SI
+	ADN1 = "ATGCGTAT"
+	ADN2 = "CGTATATG"
+
+	// ADN1 = "ATGCGTAT"
+	// ADN2 = "ATATGCGT"
+
+	resultado := CompararADN(ADN1, ADN2)
+	if resultado {
+		fmt.Println("Las cadenas coinciden")
+	} else {
+		fmt.Println("Las cadenas NO coinciden")
+	}
+
+}
