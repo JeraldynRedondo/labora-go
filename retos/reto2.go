@@ -24,8 +24,8 @@ func CalcularTiempo(segundos int) {
 
 func main() {
 	//var num int
-	//fmt.Println("¡Bienvenido! \nPor favor,ingresa el número= ")
-	//fmt.Scanf("%d\n", &num)
+	//fmt.Println("¡Bienvenido! \nPor favor,ingresa el número de segundos a calcular= ")
+	//fmt.Scanln(&num)
 
 	CalcularTiempo(80)
 	CalcularTiempo(7200)

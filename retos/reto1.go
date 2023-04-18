@@ -56,7 +56,7 @@ func CalcularNumeros(num int) {
 func main() {
 	//var num int
 	//fmt.Println("¡Bienvenido! \nPor favor,ingresa el número= ")
-	//fmt.Scanf("%d\n", &num)
+	//fmt.Scanln(&num)
 
 	CalcularNumeros(80)
 	CalcularNumeros(120)
