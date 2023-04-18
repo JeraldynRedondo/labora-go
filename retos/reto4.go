@@ -68,11 +68,14 @@ func main() {
 	// ADN1 = "ATGCGTAT"
 	// ADN2 = "CGTATAXG"
 	//SI
-	ADN1 = "ATGCGTAT"
-	ADN2 = "CGTATATG"
-
+	// ADN1 = "ATGCGTAT"
+	// ADN2 = "CGTATATG"
+	//SI
 	// ADN1 = "ATGCGTAT"
 	// ADN2 = "ATATGCGT"
+
+	ADN1 = "123"
+	ADN2 = "231"
 
 	resultado := CompararADN(ADN1, ADN2)
 	if resultado {
