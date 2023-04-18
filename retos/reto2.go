@@ -10,11 +10,16 @@ import (
 	"fmt"
 )
 
-func CalcularTiempo(num int) {
-	var dias,horas,min,seg int
-	if num% {
-		
-	}
+func CalcularTiempo(segundos int) {
+	num := segundos
+	dias := segundos / 86400
+	segundos %= 86400
+	horas := segundos / 3600
+	segundos %= 3600
+	minutos := segundos / 60
+	segundos %= 60
+
+	fmt.Printf("%d Segundos son %d dias, %d horas, %d minutos y %d segundos \n", num, dias, horas, minutos, segundos)
 }
 
 func main() {
@@ -23,9 +28,11 @@ func main() {
 	//fmt.Scanf("%d\n", &num)
 
 	CalcularTiempo(80)
-	CalcularTiempo(120)
-	CalcularTiempo(400)
-	CalcularTiempo(860)
+	CalcularTiempo(7200)
+	CalcularTiempo(10820)
+	CalcularTiempo(12000)
 	CalcularTiempo(2000)
+	CalcularTiempo(86400)
+	CalcularTiempo(87450)
 
 }
