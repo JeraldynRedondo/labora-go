@@ -166,10 +166,6 @@ func deleteItem(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Usuario no encontrado")
 }
 
-// var items = []Item{{ID:   "1",Name: "Juana",},{ID:   "2",Name: "Mario",},{ID:   "3",Name: "Paola",},{ID:   "4",Name: "Luis",},
-// {ID:   "5",Name: "Isabella",},{ID:   "6",Name: "Jose",},{ID:   "7",Name: "Elena",},{ID:   "8",Name: "Pedro",},{ID:   "9",
-// Name: "Laura",},{ID:   "10",Name: "Samuel",},}
-
 var items []Item
 
 func main() {
@@ -177,8 +173,6 @@ func main() {
 	for i := 1; i <= 10; i++ {
 		items = append(items, Item{ID: fmt.Sprintf("item%d", i), Name: fmt.Sprintf("Item %d", i)})
 	}
-
-	items = append(items, Item{ID: fmt.Sprintf("item%d", 11), Name: fmt.Sprintf("Item %d", 1)})
 
 	router := mux.NewRouter()
 
