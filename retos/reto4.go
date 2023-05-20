@@ -28,7 +28,7 @@ package main
 
 import "fmt"
 
-func CompararADN(ADN1, ADN2 string) bool {
+func CompararADN1(ADN1, ADN2 string) bool {
 	if len(ADN1) != len(ADN2) {
 		return false
 	}
@@ -44,6 +44,36 @@ func CompararADN(ADN1, ADN2 string) bool {
 					}
 				}
 			}
+		}
+	}
+
+	return false
+}
+
+func RotateRight(s string) string {
+	slice1 := []rune(s)
+	size := len(slice1)
+	slice2 := make([]rune, size)
+	last := size - 1
+	for i := 0; i < size; i++ {
+		if i == 0 {
+			slice2[0] = slice1[last]
+		} else {
+			slice2[i] = slice1[i-1]
+		}
+	}
+	return string(slice2)
+}
+
+func CompararADN2(ADN1, ADN2 string) bool {
+
+	rotar := ADN1
+
+	for i := 0; i < len(ADN1); i++ {
+		rotar = RotateRight(rotar)
+
+		if rotar == ADN2 {
+			return true
 		}
 	}
 
@@ -77,7 +107,7 @@ func main() {
 	ADN1 = "123"
 	ADN2 = "231"
 
-	resultado := CompararADN(ADN1, ADN2)
+	resultado := CompararADN2(ADN1, ADN2)
 	if resultado {
 		fmt.Println("Las cadenas coinciden")
 	} else {
