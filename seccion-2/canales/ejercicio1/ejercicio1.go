@@ -22,9 +22,11 @@ func SumarNumeros(Inicio, Final int, c chan int, wg *sync.WaitGroup) {
 
 func main() {
 	runtime.GOMAXPROCS(runtime.NumCPU()) // Configura el número máximo de núcleos que se pueden utilizar para ejecutar goroutines.
-	var wg sync.WaitGroup
 	c := make(chan int)
-	var Inicio, Final int
+	var (
+		wg            sync.WaitGroup
+		Inicio, Final int
+	)
 
 	// fmt.Println("¡Bienvenido! \nPor favor,ingresa el número de inicio del rango")
 	// fmt.Scanln(&Inicio)

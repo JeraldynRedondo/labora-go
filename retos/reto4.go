@@ -28,20 +28,29 @@ package main
 
 import "fmt"
 
-func CompararADN1(ADN1, ADN2 string) bool {
+//esCircular compara dos secuencias de ADN en forma circular
+func esCircular(ADN1, ADN2 string, start1, start2 int) bool {
+	length := len(ADN1)
+	for k := 0; k < length; k++ {
+		if ADN1[(start1+k)%length] != ADN2[(start2+k)%length] {
+			return false
+		}
+	}
+	return true
+}
+
+// CompararADN compara dos secuencias de ADN para determinar si son iguales en forma circular
+func CompararADN(ADN1, ADN2 string) bool {
 	if len(ADN1) != len(ADN2) {
 		return false
 	}
 
-	for i := 0; i < len(ADN1); i++ {
-		for j := 0; j < len(ADN1); j++ {
+	length := len(ADN1)
+	for i := 0; i < length; i++ {
+		for j := 0; j < length; j++ {
 			if ADN1[i] == ADN2[j] {
-				for k := 1; k < len(ADN1); k++ {
-					if ADN1[(i+k)%len(ADN1)] != ADN2[(j+k)%len(ADN2)] {
-						break
-					} else if k == len(ADN1)-1 {
-						return true
-					}
+				if esCircular(ADN1, ADN2, i, j) {
+					return true
 				}
 			}
 		}

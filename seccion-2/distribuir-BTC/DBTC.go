@@ -11,6 +11,15 @@ package main
 
 import "fmt"
 
+var (
+	coins = 50
+	users = []string{
+		"Matthew", "Sarah", "Augustus", "Heidi", "Emilie",
+		"Peter", "Giana", "Adriano", "Aaron", "Elizabeth",
+	}
+	distribution = make(map[string]int, len(users))
+)
+
 func distribuir(users []string, coins *int, distribution map[string]int) *map[string]int {
 	var user string
 	var sum int
@@ -49,15 +58,6 @@ func distribuir(users []string, coins *int, distribution map[string]int) *map[st
 
 	return &distribution
 }
-
-var (
-	coins = 50
-	users = []string{
-		"Matthew", "Sarah", "Augustus", "Heidi", "Emilie",
-		"Peter", "Giana", "Adriano", "Aaron", "Elizabeth",
-	}
-	distribution = make(map[string]int, len(users))
-)
 
 func main() {
 	distribuir(users, &coins, distribution)
