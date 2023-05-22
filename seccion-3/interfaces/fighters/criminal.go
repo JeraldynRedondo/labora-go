@@ -11,7 +11,7 @@ type Criminal struct {
 
 // Action to attack. Implementation of the interface <contender> in the structure <Criminal>.
 func (p *Criminal) ThrowAttack() int {
-	return rand.Intn(8)
+	return rand.Intn(7)
 }
 
 // Action to recibe attack. Implementation of the interface <contender> in the structure <Criminal>.

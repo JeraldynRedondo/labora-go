@@ -4,19 +4,19 @@ import (
 	"fmt"
 	"time"
 
-	"interfacesGame/repository"
+	"interfacesGame/fighters"
 )
 
 func main() {
 
-	contenders := repository.CreatedFighters()
+	contenders := fighters.CreatedFighters()
 
-	var areAtLeastBothAlive = repository.CountFightersAlive(contenders)
+	var _, areAtLeastBothAlive = fighters.AreAtLeastBothAlive(contenders)
 
 	for areAtLeastBothAlive {
 
 		for i := 0; i < len(contenders); i++ {
-			repository.Stroke(i, contenders)
+			fighters.Stroke(i, contenders)
 		}
 
 		for _, contender := range contenders {
@@ -24,8 +24,11 @@ func main() {
 		}
 		fmt.Println()
 
-		areAtLeastBothAlive = repository.CountFightersAlive(contenders)
+		_, areAtLeastBothAlive = fighters.AreAtLeastBothAlive(contenders)
 
 		time.Sleep(3 * time.Second)
 	}
+
+	winner, _ := fighters.AreAtLeastBothAlive(contenders)
+	fmt.Printf("The winner of the hunger games is %s with a life of %d", winner.GetName(), winner.GetLife())
 }

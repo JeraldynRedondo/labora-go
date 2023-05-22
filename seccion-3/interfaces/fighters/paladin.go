@@ -12,11 +12,12 @@ type Paladin struct {
 
 // Action to attack. Implementation of the interface <contender> in the structure <Paladin>.
 func (p Paladin) ThrowAttack() int {
-	intensityAttack := rand.Intn(6)
 
-	if p.Life <= (p.InitialLife / 2) {
-		return intensityAttack / 2
-	}
+	intensity := rand.Intn(6)
+
+	//Variable that calculates the intensity of the attack according to the percentage of life
+	calculate := float64(intensity) * float64(p.Life) / float64(p.InitialLife)
+	intensityAttack := int(calculate)
 
 	return intensityAttack
 }
